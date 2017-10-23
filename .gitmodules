@@ -1,0 +1,3 @@
+[submodule "cibieber"]
+	path = cibieber
+	url = https://github.com/tjhei/cibieber.git
