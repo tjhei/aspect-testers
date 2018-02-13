@@ -83,14 +83,13 @@ time cmake -G "Ninja" $compiler -D ASPECT_TEST_GENERATOR=Ninja -D ASPECT_USE_PET
 echo "+ ninja"
 time ninja || { echo "build FAILED"; return; }
 
+echo "+ ./aspect --version"
+./aspect --version || { echo "version check FAILED"; return; }
+
 # build all libs first to work around parallel ninja quirks, ignore errors, be silent
 echo "prebuilding tests..."
 cd tests
-
 time ninja -k 0 tests >/dev/null 2>&1
-
-#echo "+ make -j $NPROC -k tests >/dev/null 2>&1"
-#time make -j $NPROC -k tests >/dev/null 2>&1
 cd .. 
 
 echo "+ ctest --output-on-failure -j $NPROC"
