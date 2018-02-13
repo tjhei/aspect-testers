@@ -33,7 +33,6 @@ def execute_test(sha1, name):
     #cmd = 'docker run --rm=true ' \
     cmd = './docker_with_timeout.sh 30m ' \
           '--net none ' \
-          '-e QUIET=1 ' \
           '-e hash={0} ' \
           '-e name={1} ' \
           '-e NPROC=20 ' \
@@ -59,7 +58,7 @@ def execute_test(sha1, name):
 
 
 # number of tests to go back in time when doing "run-all" default 10
-n_old_tests = 2
+n_old_tests = 1
 
 # number of tests to run before stopping (make automated tester more
 # responsive for long running tests)
@@ -83,7 +82,7 @@ def is_allowed(username):
 
 # make a nice link for a test result:
 def make_link(sha):
-    return "http://www.math.clemson.edu/~heister/cib/aspect-8.5-gcc-hd/{}/".format(sha)
+    return "http://www.math.clemson.edu/~heister/cib/{}/{}/".format(github_context,sha)
 
 
 # for a given line l of the test output return

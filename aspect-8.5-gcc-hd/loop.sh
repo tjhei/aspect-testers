@@ -23,13 +23,23 @@ do
   then
       python runner.py mark-pullrequests
   else
+
+        /ssd/auto/lock.sh $$
+        ret=$?
+        if [ $ret -eq 0 ];
+        then
+          
       python runner.py do-pullrequests
       python runner.py render
+
+	/ssd/auto/unlock.sh
 
       echo "rsync ..."
       rsync -az results.html logs/ timo.ces:public_html/cib/$ID/
       ssh timo.ces chmod -R a+rX ~/public_html/cib/$ID/
-
+     else
+        echo "could not get lock..."
+        fi  
   fi
 
   curl http://www.math.clemson.edu/~heister/alive.php?id=$ID$MARK >/dev/null 2>&1
