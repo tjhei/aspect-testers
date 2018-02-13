@@ -74,11 +74,11 @@ then
  compiler=" -D DEAL_II_DIR=~/deal.II/installed-v8.4.1-clang "
 fi
 
-#echo "+ cmake -G "Ninja" $compiler -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON ~/source"
-#time cmake -G "Ninja" $compiler -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON ~/source || { echo "configure FAILED"; return; }
+#echo "+ cmake -G "Ninja" $compiler -D ASPECT_COMPARE_TEST_RESULTS=OFF -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON ~/source"
+#time cmake -G "Ninja" $compiler -D ASPECT_COMPARE_TEST_RESULTS=OFF -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON ~/source || { echo "configure FAILED"; return; }
 
-echo "+ cmake -G "Ninja" $compiler -D ASPECT_TEST_GENERATOR=Ninja -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON -D ASPECT_PRECOMPILE_HEADERS=ON ~/source"
-time cmake -G "Ninja" $compiler -D ASPECT_TEST_GENERATOR=Ninja -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON -D ASPECT_PRECOMPILE_HEADERS=ON ~/source || { echo "configure FAILED"; return; }
+echo "+ cmake -G "Ninja" $compiler -D ASPECT_COMPARE_TEST_RESULTS=OFF -D ASPECT_TEST_GENERATOR=Ninja -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON -D ASPECT_PRECOMPILE_HEADERS=ON ~/source"
+time cmake -G "Ninja" $compiler -D ASPECT_COMPARE_TEST_RESULTS=OFF -D ASPECT_TEST_GENERATOR=Ninja -D ASPECT_USE_PETSC=$petsc -D ASPECT_RUN_ALL_TESTS=ON -D ASPECT_PRECOMPILE_HEADERS=ON ~/source || { echo "configure FAILED"; return; }
 
 echo "+ ninja"
 time ninja || { echo "build FAILED"; return; }
